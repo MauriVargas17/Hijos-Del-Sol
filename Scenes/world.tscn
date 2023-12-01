@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://diylaf8cgbql"]
+
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_5srfs"]
+[ext_resource type="Script" path="res://Scenes/Camera.gd" id="2_2fvn0"]
+[ext_resource type="PackedScene" uid="uid://b04t3me3b6765" path="res://Scenes/UI.tscn" id="3_blxq1"]
+[ext_resource type="PackedScene" uid="uid://d0hfu82gg81k0" path="res://Scenes/Characters/unit.tscn" id="3_vr77d"]
+[ext_resource type="PackedScene" uid="uid://ccovib0128bp6" path="res://Scenes/Nature/tree.tscn" id="4_51pk7"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_5srfs")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("2_2fvn0")
+
+[node name="UI" parent="." instance=ExtResource("3_blxq1")]
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Unit" parent="Units" instance=ExtResource("3_vr77d")]
+position = Vector2(193, 117)
+
+[node name="Unit2" parent="Units" instance=ExtResource("3_vr77d")]
+position = Vector2(-219, 103)
+
+[node name="Unit3" parent="Units" instance=ExtResource("3_vr77d")]
+position = Vector2(98, -141)
+
+[node name="Unit4" parent="Units" instance=ExtResource("3_vr77d")]
+position = Vector2(-188, -107)
+
+[node name="Nature" type="Node2D" parent="."]
+
+[node name="Tree" parent="Nature" instance=ExtResource("4_51pk7")]
+position = Vector2(-386, -154)
+
+[node name="Tree2" parent="Nature" instance=ExtResource("4_51pk7")]
+position = Vector2(415, 204)
+
+[node name="Tree3" parent="Nature" instance=ExtResource("4_51pk7")]
+position = Vector2(434, -119)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccovib0128bp6"]
+
+[ext_resource type="Script" path="res://Scenes/Nature/tree.gd" id="1_2sxqx"]
+[ext_resource type="Texture2D" uid="uid://cjfgrhc0ardro" path="res://Resources/MiniWorldSprites/Nature/PineTrees.png" id="2_a37jn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1utdc"]
+size = Vector2(80, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1d62"]
+radius = 58.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0yk"]
+bg_color = Color(0.458824, 0.584314, 0.92549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r0a4"]
+bg_color = Color(0.776471, 0.701961, 0.0980392, 1)
+
+[node name="Tree" type="StaticBody2D"]
+position = Vector2(14, 2)
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_2sxqx")
+
+[node name="PineTrees" type="Sprite2D" parent="."]
+position = Vector2(-15, -46)
+scale = Vector2(5.75, 6.3125)
+texture = ExtResource("2_a37jn")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15, -21)
+shape = SubResource("RectangleShape2D_1utdc")
+
+[node name="ChopArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChopArea"]
+position = Vector2(-15, -44)
+shape = SubResource("CircleShape2D_h1d62")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -39.0
+offset_top = -110.0
+offset_right = 11.0
+offset_bottom = -104.0
+theme_override_styles/background = SubResource("StyleBoxFlat_fc0yk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6r0a4")
+value = 80.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ChopArea" to="." method="_on_chop_area_body_entered"]
+[connection signal="body_exited" from="ChopArea" to="." method="_on_chop_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
